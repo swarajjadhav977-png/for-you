@@ -24,11 +24,12 @@
 }
 
         button {
-            padding: 10px 25px;
-            font-size: 18px;
-            cursor: pointer;
-            border: none;
-            border-radius: 50px;
+            width: 100px;
+    height: 45px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
         }
 
         #yesBtn {
@@ -39,6 +40,7 @@
         #noBtn {
             background-color: red;
             color: white;
+            position: absolute;
         }
 
         #message {
@@ -49,6 +51,31 @@
         #gif {width: 250px;
                max-width: 80%;
                height: auto;}
+        .heart{
+              position: fixed;
+    bottom: -50px;
+    font-size: 30px;
+    animation: float 4s linear forwards;
+    pointer-events: none;
+    z-index: 999;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-300px) scale(1.3) rotate(20deg);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-700px) scale(0.8) rotate(-20deg);
+        opacity: 0;
+        }
+       }        
     </style>
 </head>
 
@@ -57,14 +84,40 @@
     <img id="gif" src="https://i.pinimg.com/736x/6f/0b/d1/6f0bd17b2ced31e6cb2f9c5b7b6b54ff.jpg">
 
     <h1>Will You Be My Girlfriend? 💖</h1>
-
-    <div id="message"></div>
-
+    <div id="message">
+        <button id="yesBtn" onclick="sayYes()">Yes ❤️</button>
+        <button id="noBtn">No 😭</button>
+    </div>
     <script>
         function sayYes() {
             document.getElementById("gif").src = "https://i.pinimg.com/736x/d6/ab/a6/d6aba617384f38bf314e594b9f710150.jpg";
+
             document.querySelector("h1").innerHTML =
                 "Yay! I Love You Too ❤️😘";
+                createHearts();
+
+                function createHearts() {
+                  for (let i = 0; i < 50; i++) {
+
+                    let heart = document.createElement("div");
+                    heart.className = "heart";
+                    heart.innerHTML = "❤️";
+
+                    heart.style.left = Math.random() * 100 + "vw";
+
+                    heart.style.animationDuration = 
+                    (Math.random() * 2+3) + "s";
+
+                    heart.style.fontSize = 
+                    (Math.random() * 20 + 20) + "px";
+
+                    document.body.appendChild(heart);
+
+                    setTimeout(() => {
+                      heart.remove();
+                    },5000);
+                  }
+                }
         }
         const noBtn = document.getElementById("noBtn");
         const gif = document.getElementById("gif");
@@ -95,6 +148,7 @@ function moveNoButton() {
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
 }noBtn.addEventListener("mouseover", moveNoButton);
+        noBtn.addEventListener("click", moveNoButton);
 noBtn.addEventListener("touchstart", moveNoButton);
     </script>
 
