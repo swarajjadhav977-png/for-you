@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Will You Be Mine?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+    background-color: #ffe6eb;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+        button {
+            padding: 10px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 50px;
+        }
+
+        #yesBtn {
+            background-color: lightgreen;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: red;
+            color: white;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 24px;
+            color: green;
+        } 
+        #gif {width: 250px;
+               max width: 80;
+               height: auto;}
+    </style>
+</head>
+
+<body>
+
+    <img id="gif" src="https://i.pinimg.com/736x/6f/0b/d1/6f0bd17b2ced31e6cb2f9c5b7b6b54ff.jpg">
+
+    <h1>Will You Be My Girlfriend? 💖</h1>
+
+    <button id="yesBtn" onclick="sayYes()">Yes</button>
+    <button id="noBtn">No</button>
+
+    <div id="message"></div>
+
+    <script>
+        function sayYes() {
+            document.getElementById("gif").src = "https://i.pinimg.com/736x/d6/ab/a6/d6aba617384f38bf314e594b9f710150.jpg";
+            document.querySelector("h1").innerHTML =
+                "Yay! I Love You Too ❤️😘";
+        }
+        const noBtn = document.getElementById("noBtn");
+        const gif = document.getElementById("gif");
+        const gifs =[
+    "https://media1.tenor.com/m/zGm5acSjHCIAAAAC/cat-begging.gif",
+    "https://i.pinimg.com/736x/f5/8a/4a/f58a4aae922155f97ce6bfc3d42500f9.jpg",
+    "https://i.pinimg.com/originals/3b/c4/6e/3bc46e8c8dfd0b62345e0a5ac4b41270.gif",
+    "https://i.pinimg.com/originals/d7/f5/87/d7f587da442a54025daf47091fe26ba0.gif"
+];
+                        const messages =
+                         ["Please? 🥺",
+    "oh ok 😭",
+    "Think again ❤️",
+    "Don't break my heart 😭"
+]
+
+let index = 0;
+function moveNoButton() {
+    gif.src = gifs[index];
+    document.querySelector("h1").innerHTML = messages[index];
+
+    index = (index + 1) % gifs.length;
+
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("touchstart", moveNoButton);
+    </script>
+
+</body>
+</html>
